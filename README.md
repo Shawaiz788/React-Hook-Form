@@ -9,11 +9,21 @@ A clean, high-performance reference implementation of **React Hook Form** inside
 This repository is split into two branches to demonstrate different levels of form architecture:
 
 ### 1. `main` Branch
+
+
+https://github.com/user-attachments/assets/18e4fa0a-e39a-450f-8e65-10d05c4df9da
+
+
 * **Approach**: Simple inline forms.
 * **Validation**: Implements validation inline inside `<Controller>` components using React Hook Form's local `rules` object.
 * **Component Design**: Form inputs and validation logic are declared directly within [index.tsx](file:///c:/Users/lenovo/Desktop/Internship/ReactHookForm/react-hook-form/app/(tabs)/index.tsx).
 
-### 2. `CustomInputComponent` Branch (Current)
+### 2. `CustomInputComponent` Branch 
+
+https://github.com/user-attachments/assets/751688a2-bed2-4cd4-b5b5-c1139efe0462
+
+
+
 * **Approach**: Advanced modular architecture.
 * **Validation**: Centralized schema validation using **Yup** and **Yup Resolver** (`@hookform/resolvers/yup`).
 * **Component Design**: Extracted reusable inputs into [FormInputController.tsx](file:///c:/Users/lenovo/Desktop/Internship/ReactHookForm/react-hook-form/components/controllers/FormInputController.tsx) to promote DRY principles and maintain clean views.
