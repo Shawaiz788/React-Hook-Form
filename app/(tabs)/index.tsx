@@ -1,6 +1,7 @@
+import FormInputController from '@/components/controllers/FormInputController'
 import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { useForm } from 'react-hook-form'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const index = () => {
   const {
@@ -19,41 +20,31 @@ const index = () => {
   return (
     <View style={styles.container}>
       <Text>React Hook Form Example in react native</Text>
-      <Controller
-        name='username'
+
+      <FormInputController
         control={control}
-        render={({ field: { onChange, onBlur, value } }) =>
-          <TextInput
-            placeholder='Enter your name'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        }
-        rules={{ required: true, minLength: 3, maxLength: 12 }}
+        name={"username"}
+        placeholder={"Username"}
       />
 
-      {errors.username && <Text
-        style={styles.textError}
-      >Name is required</Text>}
-      <Controller
-        name='email'
+      <FormInputController
         control={control}
-        render={({ field: { onChange, onBlur, value } }) =>
-          <TextInput
-            placeholder='Enter your email'
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        }
-        rules={{ required: true, pattern: /^\S+@\S+$/i }}
+        name={"email"}
+        placeholder={"Enter Your Email"}
       />
-      {errors.email && <Text
-        style={styles.textError}
-      >Enter a valid Email</Text>}
+
+      <FormInputController
+        control={control}
+        name={"Password"}
+        placeholder={"Enter Your Password"}
+        props={{
+          secureTextEntry: true
+        }}
+      />
+
+
+
+
 
       <TouchableOpacity
         onPress={handleSubmit(submit)}
