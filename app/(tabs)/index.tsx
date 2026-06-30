@@ -1,4 +1,6 @@
 import FormInputController from '@/components/controllers/FormInputController'
+import { formSchema } from '@/constants/schemas/authSchema'
+import { yupResolver } from '@hookform/resolvers/yup'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -10,10 +12,16 @@ const index = () => {
     formState: {
       errors
     }
-  } = useForm()
+  } = useForm({
+    resolver: yupResolver(formSchema)
+  })
+
+  console.log("===============================")
+  console.log(JSON.stringify(errors, null, 3))
+  console.log("===============================")
 
 
-  const submit = (data) => {
+  const submit = (data: any) => {
     console.log(data)
     Alert.alert(JSON.stringify(data))
   }
@@ -25,21 +33,24 @@ const index = () => {
         control={control}
         name={"username"}
         placeholder={"Username"}
+        errors={errors}
       />
 
       <FormInputController
         control={control}
         name={"email"}
         placeholder={"Enter Your Email"}
+        errors={errors}
       />
 
       <FormInputController
         control={control}
-        name={"Password"}
+        name={"password"}
         placeholder={"Enter Your Password"}
         props={{
           secureTextEntry: true
         }}
+        errors={errors}
       />
 
 

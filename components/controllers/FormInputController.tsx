@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Control, Controller, FieldErrors, FieldValues } from 'react-hook-form'
-import { StyleSheet, TextInput, TextInputProps } from 'react-native'
+import { StyleSheet, Text, TextInput, TextInputProps } from 'react-native'
 interface FormInputControllerProps {
     control: Control<FieldValues>,
     errors?: FieldErrors<FieldValues>,
@@ -17,28 +17,29 @@ const FormInputController: FC<FormInputControllerProps> = ({
     props
 }) => {
     return (
-        <Controller
-            name={name}
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) =>
-                <TextInput
-                    placeholder={placeholder}
-                    style={styles.input}
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    {...props}
-                />
-            }
-        // rules={{ required: true, minLength: 3, maxLength: 12 }}
-        //remove rules as we making them dynamic now
-        />
+        <>
+            <Controller
+                name={name}
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) =>
+                    <TextInput
+                        placeholder={placeholder}
+                        style={styles.input}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                        {...props}
+                    />
+                }
+            // rules={{ required: true, minLength: 3, maxLength: 12 }}
+            //remove rules as we making them dynamic now
+            />
 
-        /* {errors.username && <Text
-            style={styles.textError}
-        >Name is required</Text>} */
+            {errors && errors[name] &&
+                <Text style={styles.textError}>
+                    {errors[name]?.message}</Text>}
 
-    )
+        </>)
 }
 
 export default FormInputController
